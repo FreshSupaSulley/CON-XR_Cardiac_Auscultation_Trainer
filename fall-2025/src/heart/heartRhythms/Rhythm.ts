@@ -9,6 +9,9 @@ import { earlySystolicMurmurRhythm } from "./EarlySystolicMurmur.js";
 import { lateSystolicMurmurRhythm } from "./LateSystolicMurmur.js";
 import { holosystolicMurmurRhythm } from "./HolosystolicMurmur.js";
 import { clickLateSystolicMurmurRhythm } from "./Click-Late-SystolicMurmur.js";
+import { s4MidSysRhythm } from "./S4&Mid-SysMurmur.js"
+import { s3HolosysMurmurRhythm } from "./S3&HolosysMurmur.js"
+import { mitralOpeningSnapAndDiastolicMurmurRhythm } from "./MitralOpeningSnap&DiastolicMurmur.js"
 
 export type AnimationKeyframe = {
 	time: number;
@@ -33,13 +36,16 @@ export const defaultRhythm: Rhythm = normalS1S2Rhythm;
 
 export const availableRhythms: Rhythm[] = [
 	normalS1S2Rhythm,
-	s4GallopRhythm,
 	s3GallopRhythm,
+	s4GallopRhythm,
 	midSystolicClickRhythm,
 	splitS1Rhythm,
-	midSystolicMurmurRhythm,
 	earlySystolicMurmurRhythm,
+	midSystolicMurmurRhythm,
 	lateSystolicMurmurRhythm,
 	holosystolicMurmurRhythm,
-	clickLateSystolicMurmurRhythm
+	clickLateSystolicMurmurRhythm,
+	s4MidSysRhythm,
+	s3HolosysMurmurRhythm,
+	mitralOpeningSnapAndDiastolicMurmurRhythm
 ];
