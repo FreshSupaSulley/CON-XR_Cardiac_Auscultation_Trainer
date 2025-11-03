@@ -42,10 +42,10 @@ export class HeartController {
     
     // Heart chamber names mapping from rhythm names to actual blendshape names
     private readonly CHAMBER_NAMES = {
-        LA: 'LA 0.5',
-        RA: 'RA 0.5', 
-        LV: 'LV 0.5',
-        RV: 'RV 0.5'
+        LA: 'LA',
+        RA: 'RA', 
+        LV: 'LV',
+        RV: 'RV'
     };
     
     private constructor() {
