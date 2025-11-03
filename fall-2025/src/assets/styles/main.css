@@ -7,15 +7,16 @@
     --color-primary-dark: #c0392b;
     --color-accent: #3498db;
     
-    /* Backgrounds */
+    /* Backgrounds - Dark Mode (default) */
     --color-bg: #171717;
     --color-bg-gradient: #171717;
     
-    /* Glass effect */
+    /* Glass effect - Dark Mode */
     --glass-bg: rgba(23, 23, 23, 0.85);
     --glass-border: rgba(255, 255, 255, 0.15);
+    --control-group-bg: #171717;
     
-    /* Text */
+    /* Text - Dark Mode */
     --color-text: #ffffff;
     --color-text-muted: #b8c5d6;
     
@@ -26,6 +27,21 @@
     
     /* Borders */
     --radius: 10px;
+}
+
+/* Light Mode Colors */
+body.light-mode {
+    --color-bg: #f5f5f5;
+    --color-bg-gradient: #e8e8e8;
+    
+    /* Glass effect - Light Mode */
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(0, 0, 0, 0.15);
+    --control-group-bg: #ffffff;
+    
+    /* Text - Light Mode */
+    --color-text: #2c3e50;
+    --color-text-muted: #546e7a;
 }
 
 /* Reset */

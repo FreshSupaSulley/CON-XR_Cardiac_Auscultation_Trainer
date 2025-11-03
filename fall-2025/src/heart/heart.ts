@@ -31,22 +31,33 @@ export function init(): void {
     scene = new THREE.Scene();
     scene.background = new THREE.Color(0x171717);
     
-    // Create camera
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    // Create camera - get container size for proper aspect ratio
+    const container = document.getElementById('container');
+    let aspect = window.innerWidth / window.innerHeight;
+    if (container) {
+        const containerRect = container.getBoundingClientRect();
+        aspect = containerRect.width / containerRect.height;
+    }
+    camera = new THREE.PerspectiveCamera(75, aspect, 0.1, 1000);
     camera.position.set(0, 0, 4); // Set initial zoom further out
     
     // Create renderer
     renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    
+    // Size renderer to match container (already retrieved above)
+    if (container) {
+        // Size renderer to match container, not full viewport
+        const containerRect = container.getBoundingClientRect();
+        renderer.setSize(containerRect.width, containerRect.height);
+        container.appendChild(renderer.domElement);
+    } else {
+        // Fallback to window size if container not found
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+    
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.setPixelRatio(window.devicePixelRatio);
-    
-    // Add renderer to DOM
-    const container = document.getElementById('container');
-    if (container) {
-        container.appendChild(renderer.domElement);
-    }
     
     // Create controls
     try {
@@ -296,9 +307,18 @@ function animate(): void {
 
 // Handle window resize
 function onWindowResize(): void {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    const container = document.getElementById('container');
+    if (container) {
+        const containerRect = container.getBoundingClientRect();
+        camera.aspect = containerRect.width / containerRect.height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(containerRect.width, containerRect.height);
+    } else {
+        // Fallback to window size
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    }
 }
 
 // Reset camera to default position
@@ -397,9 +417,11 @@ function toggleMode(): void {
 
     if (isDarkMode) {
         scene.background = new THREE.Color(0x171717); // dark background
+        document.body.classList.remove('light-mode');
         if (iconSpan) iconSpan.textContent = '🌙';      // moon icon for dark mode
     } else {
         scene.background = new THREE.Color(0xffffff); // light background
+        document.body.classList.add('light-mode');
         if (iconSpan) iconSpan.textContent = '🌞';      // sun icon for light mode
     }
 }
