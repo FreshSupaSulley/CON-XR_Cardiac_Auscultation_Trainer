@@ -16,6 +16,7 @@ let isAnimating: boolean = true;
 let fbxLoader: FBXLoader;
 let textureLoader: THREE.TextureLoader;
 let heartTexture: THREE.Texture | null = null;
+let isDarkMode = true;
 
 // Blendshapes/Morph targets variables for FBX
 let morphTargetMeshes: THREE.Mesh[] = [];
@@ -367,6 +368,7 @@ declare global {
         setHeartSoundVolume: (volume: number) => void;
         toggleHeartSoundVariations: () => void;
         getAvailableHeartRhythms: () => string[];
+        toggleMode: () => void;
     }
 }
 
@@ -387,6 +389,22 @@ function getAvailableHeartRhythms(): string[] {
     return heartController.getAvailableRhythms().map(rhythm => rhythm.name);
 }
 
+function toggleMode(): void {
+    const modeButton = document.getElementById("change-mode") as HTMLButtonElement;
+    const iconSpan = modeButton.querySelector(".icon") as HTMLElement;
+
+    isDarkMode = !isDarkMode;
+
+    if (isDarkMode) {
+        scene.background = new THREE.Color(0x171717); // dark background
+        if (iconSpan) iconSpan.textContent = '🌙';      // moon icon for dark mode
+    } else {
+        scene.background = new THREE.Color(0xffffff); // light background
+        if (iconSpan) iconSpan.textContent = '🌞';      // sun icon for light mode
+    }
+}
+
+
 window.resetCamera = resetCamera;
 window.toggleAnimation = toggleAnimation;
 window.setHeartCycleDuration = setHeartCycleDuration;
@@ -396,3 +414,4 @@ window.heartController = heartController;
 window.switchHeartRhythm = switchHeartRhythm;
 window.setHeartSoundVolume = setHeartSoundVolume;
 window.getAvailableHeartRhythms = getAvailableHeartRhythms;
+window.toggleMode = toggleMode;
