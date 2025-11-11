@@ -1,0 +1,46 @@
+This document will serve as information of what heart rhythms will be displayed in the application.
+
+These sounds were taken from the University of Michigan Heart Sound and Murmur Library. https://open.umich.edu/find/open-educational-resources/medical/heart-sound-murmur-library
+
+This section will show all rhythms that are displayed in the application. These rhythms apply to all auscultation locations.
+
+	Rhythms:
+		Normal S1 S2
+		S3 Gallop
+		S4 Gallop
+		Mid-Systolic Click
+		Early Systolic Murmur
+		Mid Systolic Murmur
+		Late Systolic Murmur
+		Click Late Systolic Murmur
+
+		Other options:
+			S4 & Mid-Sys Murmur
+			Systolic & Diastolic Murmur
+
+
+This section will discuss whether the rhythms were taken straight from the library (noted above) or if they were procedurally generate. If procedurally generated, rules for how we made the sounds will be shown.
+
+	Auscultation Locations:
+
+		Mitral (Apex):
+			All Rhythms from this location were taken straight from the library.
+
+		Aortic:
+			Normal S1 S2 - from library
+			The rest of the rhythms were procedurally generated
+			Rules:
+			
+
+	
+
+		Pulmonic:
+			Normal S1 S2 - from library
+			The rest of the rhythms were procedurally generated
+			Rules:
+			
+
+		Tricuspid:
+			All the rhythms were procedurally generated
+			Rules:
+			
