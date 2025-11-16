@@ -375,7 +375,7 @@ export class HeartController {
     /**
      * Play a sound from the given path
      */
-    private async playSound(soundPath: string, volume: number): Promise<void> {
+    private async playSound(soundPath: string, volume?: number): Promise<void> {
         if (!this.audioContext) {
             console.warn('Audio context not available');
             return;

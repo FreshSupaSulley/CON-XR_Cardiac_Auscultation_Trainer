@@ -39,7 +39,7 @@ export function init(): void {
         aspect = containerRect.width / containerRect.height;
     }
     camera = new THREE.PerspectiveCamera(75, aspect, 0.1, 1000);
-    camera.position.set(0, 0, 4); // Set initial zoom further out
+    camera.position.set(0, 0, 6); // Set initial zoom further out
     
     // Create renderer
     renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -66,6 +66,8 @@ export function init(): void {
         controls.dampingFactor = 0.05;
         controls.enablePan = false; // Disable panning
         controls.enableZoom = true; // Disable zoom controls
+        controls.minDistance = 4; // Minimum zoom distance
+        controls.maxDistance = 10; // Maximum zoom distance
         
     } catch (error) {
         console.error('Error creating OrbitControls:', error);
