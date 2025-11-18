@@ -29,12 +29,14 @@ export type SoundKeyframe = {
 	time: number;
 	soundPath: string;
 	volume?: number;
+	pitch?: number;
 };
 
 export type Rhythm = {
 	name: string;
 	animation?: AnimationKeyframe[];
 	sound?: SoundKeyframe[];
+	location: string;
 };
 
 export const defaultRhythm: Rhythm = mitralNormalS1S2Rhythm;

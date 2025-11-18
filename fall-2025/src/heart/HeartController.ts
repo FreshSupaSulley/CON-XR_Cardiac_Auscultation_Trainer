@@ -355,7 +355,7 @@ export class HeartController {
      * Process a sound keyframe based on cycle progress
      */
     private processSoundKeyframe(keyframe: SoundKeyframe): void {
-        const { time, soundPath, volume } = keyframe;
+        const { time, soundPath, volume, pitch } = keyframe;
         const currentCycle = Math.floor((this.currentTime - this.startTime) / this.cycleDuration);
         
         // Gets the exact moment the sound should be played within the current cycle
@@ -366,7 +366,7 @@ export class HeartController {
             const lastPlayed = this.lastPlayedSounds.get(soundPath) || -1;
             // Only play sound if it wasn't played during the current cycle (every keyframe sound only plays once during the cycle)
             if (lastPlayed < currentCycle) {
-                this.playSound(soundPath, volume);
+                this.playSound(soundPath, volume, pitch);
                 this.lastPlayedSounds.set(soundPath, currentCycle);
             }
         }
@@ -375,7 +375,7 @@ export class HeartController {
     /**
      * Play a sound from the given path
      */
-    private async playSound(soundPath: string, volume?: number): Promise<void> {
+    private async playSound(soundPath: string, volume?: number, pitch?: number): Promise<void> {
         if (!this.audioContext) {
             console.warn('Audio context not available');
             return;
@@ -402,7 +402,7 @@ export class HeartController {
             
             // Add subtle pitch variation for realism (±3%)
             //const pitchVariation = 1 + (Math.random() - 0.5) * 0.06; // ±3%
-            //source.playbackRate.value = pitchVariation;
+            source.playbackRate.value = pitch || 1;
             
             // Connect audio nodes
             source.buffer = buffer;
