@@ -11,7 +11,7 @@ export const aorticEarlySystolicMurmurRhythm: Rhythm = {
             time: 0.32,
             soundPath: "assets/sounds/aorticS1.wav",
         },
-        // Early Systolic Murmur sound
+        // Early Systolic Murmur sound. From our research it sounds similar to mitral region, so we let it unchanged
         {
             time: 0.34,
             soundPath: "assets/sounds/early-Systolic-Murmur.wav",

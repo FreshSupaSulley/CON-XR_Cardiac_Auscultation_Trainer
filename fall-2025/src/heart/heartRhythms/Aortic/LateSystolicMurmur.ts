@@ -11,10 +11,11 @@ export const aorticLateSystolicMurmurRhythm: Rhythm = {
             time: 0.32,
             soundPath: "assets/sounds/aorticS1.wav",
         },
-        // Late Systolic Murmur sound
+        // Late Systolic Murmur sound. From our research it not as loud here so adjusted volume to be less.
         {
             time: 0.53,
             soundPath: "assets/sounds/late-Systolic-Murmur.wav",
+            volume: 0.5
         },
         // S2 sound from aortic location
         {

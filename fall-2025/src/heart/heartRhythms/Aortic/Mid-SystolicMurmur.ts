@@ -11,10 +11,11 @@ export const aorticMidSystolicMurmurRhythm: Rhythm = {
             time: 0.32,
             soundPath: "assets/sounds/aorticS1.wav",
         },
-        // Mid-Systolic Murmur sound
+        // Mid-Systolic Murmur sound. From our research its the loudest in the region
         {
             time: 0.40,
             soundPath: "assets/sounds/mid-Systolic-Murmur.wav",
+            volume: 1.2,
         },
         // S2 sound from aortic location
         {

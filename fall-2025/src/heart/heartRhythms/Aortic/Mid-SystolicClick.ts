@@ -11,10 +11,11 @@ export const aorticMidSystolicClickRhythm: Rhythm = {
             time: 0.32,
             soundPath: "assets/sounds/aorticS1.wav",
         },
-        // Click sound
+        // Click sound. From our research the click sound is rarely heard here
         {
             time: 0.42,
             soundPath: "assets/sounds/click.wav",
+            volume: 0.3,
         },
         // S2 sound from aortic location
         {
