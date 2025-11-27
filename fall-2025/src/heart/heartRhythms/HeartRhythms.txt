@@ -20,6 +20,10 @@ This section will show all rhythms that are displayed in the application. These 
 			S4 & Mid-Sys Murmur
 			Systolic & Diastolic Murmur
 
+Dev notes: There are other rhythms within this project that are not included within the application. This includes the two rhythms in the other options (shown above), and more can be found within the folders (specifically the Mitral and Aortic folders).
+While these rhythms sound close to the original (taken from the library), we wanted to get a smaller and more general set to cover all auscultation locations. Therefore they did not end up in our final implementation of the application.
+
+
 
 This section will discuss whether the rhythms were taken straight from the library (noted above) or if they were procedurally generate. If procedurally generated, rules for how we made the sounds will be shown.
 The rules we setup is from our own research about what the rhythms should sound like from the different auscultation locations (this research will include help from AI).
@@ -33,6 +37,7 @@ The rules we setup is from our own research about what the rhythms should sound 
 			Normal S1 S2 - from library
 			The rest of the rhythms were procedurally generated
 			Rules:
+				S3 and S4 sounds can barely be heard from this region (or not heard at all)
 		
 
 		Pulmonic:
