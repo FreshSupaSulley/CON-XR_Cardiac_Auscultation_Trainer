@@ -3,6 +3,7 @@ import { aorticNormalS1S2Rhythm } from "./Aortic/NormalS1S2.js";
 import {aorticRhythms} from "./Aortic/index.js";
 import {mitralRhythms} from "./Mitral/index.js";
 import {pulmonicRhythms} from "./Pulmonic/index.js";
+import {tricuspidRhythms} from "./Tricuspid/index.js";
 
 export type AnimationKeyframe = {
 	time: number;
@@ -32,4 +33,5 @@ export const availableRhythms: Rhythm[] = [
 	...aorticRhythms,
 	...mitralRhythms,
 	...pulmonicRhythms,
+	...tricuspidRhythms,
 ];
