@@ -49,4 +49,7 @@ The rules we setup is from our own research about what the rhythms should sound 
 		Tricuspid:
 			All the rhythms were procedurally generated
 			Rules:
+				Murmurs are not has prominant as the mitral location
+				S3 and S4 waves are not as prominant 
+				S1 and S2 not as prominant and lower pitched
 			
