@@ -3,8 +3,8 @@ import { Rhythm } from "../Rhythm.js";
 
 // Aortic, Supine, Bell - Mid-Systolic Murmur - Mitral Regurg due to CAD
 export const tricuspidMidSystolicMurmurRhythm: Rhythm = {
-    name: "Aortic Mid-Systolic Murmur",
-    location: "Aortic",
+    name: "Tricuspid Mid-Systolic Murmur",
+    location: "Tricuspid",
     sound: [
         // S1 sound from aortic location
         {
