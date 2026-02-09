@@ -10,12 +10,14 @@ import { AudioEngine } from "../AudioEngine.js";
 import { AnimationController } from "../AnimationController.js";
 import { RhythmController } from "../RhythmController.js";
 import { TimingController } from "../TimingController.js";
+import { ISoundEmitter } from "../audio/interfaces.js";
 
 /**
  * HeartController - Orchestrator coordinating animation, rhythm, timing, and audio
  * Follows the Single Responsibility Principle by delegating to specialized controllers
+ * Implements ISoundEmitter for polymorphic sound management
  */
-export class HeartController {
+export class HeartController implements ISoundEmitter {
   private static instance: HeartController;
 
   // Sound deduplication tracking
@@ -116,14 +118,43 @@ export class HeartController {
     RhythmController.getInstance().setAuscultationLocation(location);
   }
 
-  // ============ Audio Delegation ============
+  // ============ ISoundEmitter Interface ============
 
-  public setSoundVolume(volume: number): void {
+  /**
+   * Get unique identifier for this emitter
+   */
+  public getId(): string {
+    return "heart";
+  }
+
+  /**
+   * Set the emitter's volume (implements ISoundEmitter)
+   */
+  public setVolume(volume: number): void {
     AudioEngine.getInstance().setGlobalVolume(volume);
   }
 
-  public getSoundVolume(): number {
+  /**
+   * Get the emitter's current volume (implements ISoundEmitter)
+   */
+  public getVolume(): number {
     return AudioEngine.getInstance().getGlobalVolume();
+  }
+
+  /**
+   * Check if emitter is active (implements ISoundEmitter)
+   */
+  public isActive(): boolean {
+    return this.isAnimating();
+  }
+
+  // Legacy methods for backward compatibility
+  public setSoundVolume(volume: number): void {
+    this.setVolume(volume);
+  }
+
+  public getSoundVolume(): number {
+    return this.getVolume();
   }
 
   // ============ Motion Curve ============
@@ -148,8 +179,9 @@ export class HeartController {
 
   /**
    * Update the animation - call every frame
+   * @param _deltaTime - Time since last frame (unused, HeartController uses TimingController)
    */
-  public update(): void {
+  public update(_deltaTime?: number): void {
     const timing = TimingController.getInstance();
     const animation = AnimationController.getInstance();
 
