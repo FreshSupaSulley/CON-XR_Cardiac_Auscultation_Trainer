@@ -49,10 +49,10 @@ let wasHeartAnimatingBeforeHide = true;
 const heartCameraPos = new THREE.Vector3(0, 0, 6);
 const mannequinCameraPos = new THREE.Vector3(0, 0, 8);
 const buttons = [
-  { element: document.getElementById('aortic-but'), position: new THREE.Vector3(-.4, 1.5, 0) },
-  { element: document.getElementById('pulmonic-but'), position: new THREE.Vector3 (.25, 1.5, 0) },
-  { element: document.getElementById('tricuspid-but'), position: new THREE.Vector3 (.25, .75, 0) },
-  { element: document.getElementById('mitral-but'), position: new THREE.Vector3 (.75, 0, 0) }
+  { element: document.getElementById('aortic-but'), position: new THREE.Vector3(-.4, 1.5, 1.25) },
+  { element: document.getElementById('pulmonic-but'), position: new THREE.Vector3 (.25, 1.5, 1.25) },
+  { element: document.getElementById('tricuspid-but'), position: new THREE.Vector3 (.25, .75, 1.5) },
+  { element: document.getElementById('mitral-but'), position: new THREE.Vector3 (.75, 0, 1.25) }
 ]
 
 // Initialize the 3D scene
@@ -90,7 +90,7 @@ export function init(): void {
   renderer.setPixelRatio(window.devicePixelRatio);
 
   // Create controls
-  /*
+  
   try {
     controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
@@ -102,7 +102,6 @@ export function init(): void {
   } catch (error) {
     console.error("Error creating OrbitControls:", error);
   }
-    */
 
   // Initialize FBX loader and texture loader
   try {
