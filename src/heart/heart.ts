@@ -49,8 +49,10 @@ let wasHeartAnimatingBeforeHide = true;
 const heartCameraPos = new THREE.Vector3(0, 0, 6);
 const mannequinCameraPos = new THREE.Vector3(0, 0, 8);
 const buttons = [
-  { element: document.getElementById('aortic-but'), position: new THREE.Vector3(-.25, 1.5, 0) },
-  { element: document.getElementById('pulmonic-but'), position: new THREE.Vector3 (.25, 1.5, 0) }
+  { element: document.getElementById('aortic-but'), position: new THREE.Vector3(-.4, 1.5, 0) },
+  { element: document.getElementById('pulmonic-but'), position: new THREE.Vector3 (.25, 1.5, 0) },
+  { element: document.getElementById('tricuspid-but'), position: new THREE.Vector3 (.25, .75, 0) },
+  { element: document.getElementById('mitral-but'), position: new THREE.Vector3 (.75, 0, 0) }
 ]
 
 // Initialize the 3D scene
