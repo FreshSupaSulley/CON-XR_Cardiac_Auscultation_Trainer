@@ -562,3 +562,7 @@
 .tricuspid-group {
     display: none;
 }
+
+.label {
+    position: absolute;
+}

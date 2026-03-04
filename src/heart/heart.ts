@@ -48,6 +48,10 @@ let wasHeartAnimatingBeforeHide = true;
 // Optional camera presets (tweak numbers after you see it)
 const heartCameraPos = new THREE.Vector3(0, 0, 6);
 const mannequinCameraPos = new THREE.Vector3(0, 0, 8);
+const buttons = [
+  { element: document.getElementById('aortic-but'), position: new THREE.Vector3(-.25, 1.5, 0) },
+  { element: document.getElementById('pulmonic-but'), position: new THREE.Vector3 (.25, 1.5, 0) }
+]
 
 // Initialize the 3D scene
 export function init(): void {
@@ -84,6 +88,7 @@ export function init(): void {
   renderer.setPixelRatio(window.devicePixelRatio);
 
   // Create controls
+  /*
   try {
     controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
@@ -95,6 +100,7 @@ export function init(): void {
   } catch (error) {
     console.error("Error creating OrbitControls:", error);
   }
+    */
 
   // Initialize FBX loader and texture loader
   try {
@@ -237,6 +243,7 @@ function loadHeartModel(): void {
 }
 
 function loadMannequinModel(): void {
+  updateButtonPositions();
   fbxLoader.load(
     "./public/assets/chest.fbx",
     function (object: THREE.Group) {
@@ -273,6 +280,24 @@ function loadMannequinModel(): void {
   );
 }
 
+function updateButtonPositions() {
+  buttons.forEach (btn => {
+    if (!mannequinGroup) return;
+
+    // Project the buttons 3d location to the 2d screen
+    const pos = btn.position.clone();
+    mannequinGroup.localToWorld(pos);
+    pos.project(camera);
+
+    // Position the buttons on the screen
+    const x = (pos.x * 0.5 + .5) * window.innerWidth;
+    const y = (-pos.y * 0.5 + .5) * window.innerHeight;
+
+    btn.element.style.left = x + "px";
+    btn.element.style.top = y + "px";
+  })
+}
+
 function applyViewState(updateCamera: boolean = true): void {
   const showMannequin = currentView === "mannequin";
   const showHeart = currentView === "heart";
@@ -296,6 +321,7 @@ function applyViewState(updateCamera: boolean = true): void {
     camera.position.copy(showHeart ? heartCameraPos : mannequinCameraPos);
     if (controls) controls.update();
   }
+    
 }
 
 function toggleView(): void {
@@ -419,9 +445,12 @@ function animate(): void {
   heartController.update();
 
   // Update controls
+  
   if (controls && controls.update) {
     controls.update();
   }
+    
+   updateButtonPositions();
 
   // Render the scene
   renderer.render(scene, camera);
@@ -446,6 +475,7 @@ function onWindowResize(): void {
 // Reset camera to default position
 function resetCamera(): void {
   camera.position.set(0, 0, 4); // Match the initial zoom position
+  
   if (controls && controls.reset) {
     controls.reset();
   }
