@@ -133,9 +133,6 @@ export function init(): void {
   loadMannequinModel(); // mannequin should be default visible
   loadHeartModel(); // heart starts hidden by default
 
-  // Load the heart model
-  loadHeartModel();
-
   // Start animation loop
   animate();
 
@@ -453,7 +450,6 @@ function animate(): void {
   heartController.update();
 
   // Update controls
-
   if (controls && controls.update) {
     controls.update();
   }
