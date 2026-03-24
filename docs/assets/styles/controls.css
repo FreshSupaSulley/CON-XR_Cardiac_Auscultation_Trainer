@@ -1,0 +1,599 @@
+/* ===================================
+   Controls - Compact & Non-Intrusive
+   =================================== */
+
+.controls {
+  position: fixed;
+  bottom: var(--spacing-md);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  align-items: center;
+  justify-content: center;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 32px);
+  overflow: visible;
+  padding: var(--spacing-md);
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+/* Toggle Button */
+.toggle-btn {
+  background: linear-gradient(135deg, var(--color-accent), var(--color-primary));
+  position: relative;
+  min-width: 44px;
+}
+
+.toggle-btn::after {
+  content: " ▲";
+  display: inline;
+  transition: transform 0.3s ease;
+  font-size: 12px;
+}
+
+.controls.expanded .toggle-btn::after {
+  content: " ▼";
+}
+
+/* Buttons */
+.control-btn {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  border: none;
+  color: var(--color-text);
+  padding: 12px 20px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  min-height: 44px;
+  white-space: nowrap;
+  /* width: 44px; */
+  height: 44px;
+}
+
+.control-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
+}
+
+.control-btn:active {
+  transform: translateY(0);
+}
+
+/* Play button for collapsed state (mobile only) */
+.play-btn-collapsed {
+  display: none; /* Hidden by default (desktop) */
+}
+
+/* Icon Buttons */
+.icon-buttons {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+}
+
+.icon-btn {
+  color: white;
+  min-width: 44px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-btn .icon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+/* Control Groups */
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: 8px 12px;
+  background: var(--control-group-bg);
+  border-radius: var(--radius);
+  border: 1px solid var(--glass-border);
+  min-height: 44px;
+}
+
+.control-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+/* Custom Select (Glassmorphic) */
+.custom-dropdown-container {
+  position: relative;
+}
+
+.custom-select-wrapper {
+  position: relative;
+  min-width: 180px;
+}
+
+.custom-select-trigger {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--glass-border);
+  color: var(--color-text);
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.custom-select-trigger:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.custom-select-arrow {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+  opacity: 0.7;
+}
+
+.custom-select-wrapper.open .custom-select-arrow {
+  transform: rotate(180deg);
+}
+
+.custom-select-wrapper.open .custom-select-trigger {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.2);
+}
+
+.custom-select-options-container {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 0;
+  width: 100%;
+  z-index: 99999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.custom-select-wrapper.open .custom-select-options-container {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.custom-select-options {
+  background: rgba(30, 30, 30, 0.85); /* Dark base for options */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  max-height: 250px;
+  overflow-y: auto;
+  padding: 4px;
+}
+
+/* For light mode */
+body.light-mode .custom-select-options {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.custom-select-options::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-select-options::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-select-options::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.3);
+  border-radius: 3px;
+}
+
+.custom-select-options::-webkit-scrollbar-thumb:hover {
+  background: rgba(128, 128, 128, 0.5);
+}
+
+/* filter input styling */
+.custom-select-options #rhythmFilter {
+  width: calc(100% - 8px);
+  margin: 4px;
+  padding: 6px 8px;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-text);
+  font-size: 0.9rem;
+}
+
+body.light-mode .custom-select-options #rhythmFilter {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.custom-select-option {
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--color-text);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  margin-bottom: 2px;
+}
+
+.custom-select-option:last-child {
+  margin-bottom: 0;
+}
+
+.custom-select-option:hover {
+  background: rgba(128, 128, 128, 0.15);
+}
+
+.custom-select-option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.custom-select-option.selected {
+  background: rgba(231, 76, 60, 0.15);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* "New" badge rendered next to rhythm names in the selector */
+.badge-new {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff7b00, #ff4400);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  flex-shrink: 0;
+  box-shadow: 0 1px 4px rgba(255, 100, 0, 0.4);
+}
+
+/* Sliders */
+.slider-control {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.slider-control input[type="range"] {
+  width: 100px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+}
+
+.slider-control input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid white;
+}
+
+.slider-control input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid white;
+}
+
+.slider-value {
+  font-size: 13px;
+  font-weight: 600;
+  min-width: 60px;
+  text-align: right;
+}
+
+/* Mobile - Controls as overlay at bottom */
+@media (max-width: 768px) {
+  .controls {
+    position: fixed;
+    bottom: var(--spacing-md);
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    max-width: calc(100vw - 24px);
+    padding: var(--spacing-sm);
+  }
+
+  /* Show collapsed play button when controls are collapsed */
+  .controls .play-btn-collapsed {
+    display: flex;
+  }
+
+  .controls .icon-buttons,
+  .controls .control-group {
+    display: none;
+  }
+
+  /* When manually expanded */
+  .controls.expanded .play-btn-collapsed {
+    display: none; /* Hide collapsed button when expanded */
+  }
+
+  .controls.expanded .icon-buttons,
+  .controls.expanded .control-group {
+    display: flex;
+  }
+
+  .controls.expanded {
+    flex-direction: column;
+    align-items: stretch;
+    overflow: visible;
+    padding: var(--spacing-sm);
+    gap: var(--spacing-sm);
+  }
+
+  /* Icon buttons stay horizontal on mobile */
+  .controls.expanded .icon-buttons {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .controls.expanded .icon-btn {
+    /* flex: 0 0 auto; */
+    flex: 1;
+  }
+
+  .controls.expanded .control-group {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .controls.expanded .slider-control {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .controls.expanded .slider-control input[type="range"] {
+    flex: 1;
+  }
+}
+
+/* Small height (landscape mobile/tablet) - Compact overlay at bottom */
+@media (max-height: 600px) {
+  .controls {
+    position: fixed;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px var(--spacing-sm);
+    font-size: 12px;
+  }
+
+  /* Show collapsed play button when controls are collapsed */
+  .controls .play-btn-collapsed {
+    display: flex;
+  }
+
+  .controls .icon-buttons,
+  .controls .control-group {
+    display: none;
+  }
+
+  /* When expanded */
+  .controls.expanded {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 6px 10px;
+    gap: 6px;
+    font-size: 12px;
+  }
+
+  .controls.expanded .play-btn-collapsed {
+    display: none; /* Hide collapsed button when expanded */
+  }
+
+  .controls.expanded .icon-buttons,
+  .controls.expanded .control-group {
+    display: flex;
+  }
+
+  .controls.expanded .control-btn {
+    padding: 8px 12px;
+    font-size: 12px;
+    min-height: 36px;
+  }
+
+  .controls.expanded .control-group {
+    padding: 6px 8px;
+    min-height: 36px;
+  }
+
+  .controls.expanded .control-group label {
+    font-size: 11px;
+  }
+
+  .controls.expanded .custom-select-trigger {
+    font-size: 11px;
+    padding: 6px 8px;
+  }
+  .custom-select-wrapper {
+    min-width: 120px;
+  }
+
+  .controls.expanded .slider-control input[type="range"] {
+    width: 60px;
+  }
+
+  .controls.expanded .slider-value {
+    font-size: 11px;
+    min-width: 50px;
+  }
+}
+
+/* Desktop - Always expanded, hide toggle button */
+@media (min-width: 769px) and (min-height: 601px) {
+  .controls {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    max-width: none;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  /* Hide toggle button and collapsed play button on desktop */
+  .toggle-btn,
+  .play-btn-collapsed {
+    display: none !important;
+  }
+
+  /* Always show all controls on desktop */
+  .controls .icon-buttons,
+  .controls .control-group {
+    display: flex;
+  }
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .controls {
+    max-width: 90vw;
+  }
+}
+
+/* ===================================
+   Auscultation Points
+   =================================== */
+
+.auscultation-points {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.auscultation-point {
+  position: absolute;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.3s ease;
+}
+
+.auscultation-point:hover {
+  transform: scale(1.2);
+}
+
+.auscultation-point:disabled {
+    visibility: hidden;
+}
+
+.auscultation-point.active .point-dot {
+  background: var(--color-accent);
+  box-shadow: 0 0 20px var(--color-accent);
+  transform: scale(1.3);
+}
+
+.point-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.selected-point-info {
+  text-align: center;
+  padding: var(--spacing-sm);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius);
+  border: 1px solid var(--glass-border);
+}
+
+.selected-point-info p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.selected-point-info strong {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.auscultation-btn {
+    position: absolute;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    
+    .point-dot {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .point-label {
+        font-size: 11px;
+    }
+}
+
+.aortic-group {
+  display: none;
+}
+.apex-group {
+  display: block;
+}
+.pulmonic-group {
+  display: none;
+}
+
+.tricuspid-group {
+  display: none;
+}
