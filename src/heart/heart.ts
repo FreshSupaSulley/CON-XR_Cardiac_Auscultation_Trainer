@@ -258,7 +258,7 @@ function loadHeartModel(): void {
 function loadMannequinModel(): void {
   updateButtonPositions();
   fbxLoader.load(
-    "/assets/chest.fbx",
+    "./assets/chest.fbx",
     function (object: THREE.Group) {
       // Apply matte material to reduce shininess
       object.traverse((child: THREE.Object3D) => {
